@@ -19,4 +19,16 @@ public class FOP_Util {
     public static void adminAction(CommandSender sender, String message) {
         adminAction(sender, message, false);
     }
+    
+    public static void bcastMsg(String message, Boolean raw) {
+        if (raw) {
+            Bukkit.getServer().broadcastMessage(message);
+        } else {
+            Bukkit.getServer().broadcastMessage(ChatColor.RED + message);
+        }
+    }
+    
+    public static void bcastMsg(String message) {
+        bcastMsg(message, false);
+    }
 }
