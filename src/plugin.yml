@@ -1,0 +1,5 @@
+name: FreedomOpMod
+version: 1.0
+description: FreedomOpMod (Not using TFM)
+main: me.buildcarter8.FreedomOpMod.Main
+authors: [buildcarter8, Paldiu, Mafrans]
