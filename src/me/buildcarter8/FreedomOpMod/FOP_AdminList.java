@@ -58,7 +58,7 @@ public class FOP_AdminList {
     }
     
     public static boolean isAdmin(CommandSender sender) {
-        isAdmin = FOP_AdminList.getAdminList().contains(sender.getName());
+        isAdmin = FOP_AdminList.getAdminList().contains(sender.getName().toLowerCase());
         return isAdmin;
     }
     
@@ -66,7 +66,7 @@ public class FOP_AdminList {
         if (!isAdmin(sender)) {
             isTelnetAdmin = false;
         }
-        boolean is_telnet_admin = yaml.getConfigurationSection(sender.getName()).getBoolean("is_telnet_admin");
+        boolean is_telnet_admin = yaml.getConfigurationSection(sender.getName().toLowerCase()).getBoolean("is_telnet_admin");
         isTelnetAdmin = is_telnet_admin;
         return isTelnetAdmin;
     }
@@ -76,7 +76,7 @@ public class FOP_AdminList {
             isSeniorAdmin = false;
         }
         
-        boolean is_senior_admin = yaml.getConfigurationSection(sender.getName()).getBoolean("is_senior_admin");
+        boolean is_senior_admin = yaml.getConfigurationSection(sender.getName().toLowerCase()).getBoolean("is_senior_admin");
         isSeniorAdmin = is_senior_admin;
         return isSeniorAdmin;
     }
@@ -85,7 +85,7 @@ public class FOP_AdminList {
         if (!isSeniorAdmin(sender)) {
             isSystemAdmin = false;
         }
-        boolean is_system_admin = yaml.getConfigurationSection(sender.getName()).getBoolean("is_system_admin");
+        boolean is_system_admin = yaml.getConfigurationSection(sender.getName().toLowerCase()).getBoolean("is_system_admin");
         isSystemAdmin = is_system_admin;
         return isSystemAdmin;
     }
@@ -94,7 +94,7 @@ public class FOP_AdminList {
         if (!isSystemAdmin(sender)) {
             isOfficer = false;
         }
-        boolean is_officer = yaml.getConfigurationSection(sender.getName()).getBoolean("is_officer");
+        boolean is_officer = yaml.getConfigurationSection(sender.getName().toLowerCase()).getBoolean("is_officer");
         isOfficer = is_officer;
         return isOfficer;
     }

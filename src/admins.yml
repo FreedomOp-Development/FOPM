@@ -1,0 +1,12 @@
+paldiu:
+    username: Paldiu
+    ips:
+        - 127.0.0.1
+    is_admin: true
+    is_telnet_admin: true
+    is_senior_admin: true
+    is_system_admin: true
+    is_officer: true
+    last_login: 1/1/2016 00:00:00
+    is_activated: true
+    login_message: the &1Chief Executive Officer&b!

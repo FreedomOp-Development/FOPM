@@ -27,6 +27,7 @@ public class FOP_Util {
     protected static String prefix;
     protected static final List<String> DEVELOPERS = Arrays.asList("Mafrans");
     protected static boolean isConsole;
+    protected static String rank;
     
     private FOP_Util() {
         throw new AssertionError();
@@ -179,5 +180,99 @@ public class FOP_Util {
         }
         
         return prefix;
+    }
+    
+    public static String getRank(Player p) {
+        if (FOP_AdminList.isOfficer(p)) {
+            if (p.getName().equalsIgnoreCase("paldiu")) {
+                rank = ChatColor.AQUA 
+                    + "the " 
+                    + ChatColor.DARK_BLUE 
+                    + "Chief Executive Officer" 
+                    + ChatColor.AQUA 
+                    + ".";
+            } else if (p.getName().equalsIgnoreCase("craftersmith12")) {
+                rank = ChatColor.AQUA 
+                    + "the " 
+                    + ChatColor.DARK_AQUA 
+                    + "Chief Operations Officer" 
+                    + ChatColor.AQUA 
+                    + ".";
+            } else if (p.getName().equalsIgnoreCase("enderlolzeh")) {
+                rank = ChatColor.AQUA 
+                    + "the " 
+                    + ChatColor.DARK_RED 
+                    + "Chief Forums Officer" 
+                    + ChatColor.AQUA 
+                    + ".";
+            } else if (p.getName().equalsIgnoreCase("buildcarter8")) {
+                rank = ChatColor.AQUA 
+                    + "the " 
+                    + ChatColor.DARK_PURPLE 
+                    + "Chief Development Officer" 
+                    + ChatColor.AQUA 
+                    + ".";
+            } else {
+                rank = ChatColor.AQUA 
+                    + "an " 
+                    + ChatColor.DARK_GREEN 
+                    + "Officer" 
+                    + ChatColor.AQUA 
+                    + ".";
+            }
+            
+        } 
+        else if (FOP_AdminList.isSystemAdmin(p)) {
+            rank = ChatColor.AQUA 
+                    + "a " 
+                    + ChatColor.DARK_RED 
+                    + "System Admin" 
+                    + ChatColor.AQUA 
+                    + ".";
+        }
+        else if (FOP_AdminList.isSeniorAdmin(p)) {
+            rank = ChatColor.AQUA 
+                    + "a " 
+                    + ChatColor.LIGHT_PURPLE 
+                    + "Senior Admin" 
+                    + ChatColor.AQUA 
+                    + ".";
+        } 
+        else if (FOP_AdminList.isTelnetAdmin(p)) {
+            rank = ChatColor.AQUA 
+                    + "a " 
+                    + ChatColor.GREEN 
+                    + "Telnet Admin" 
+                    + ChatColor.AQUA 
+                    + ".";
+        }
+        else if (FOP_AdminList.isAdmin(p)) {
+            rank = ChatColor.AQUA 
+                    + "a " 
+                    + ChatColor.GOLD 
+                    + "Super Admin" 
+                    + ChatColor.AQUA 
+                    + ".";
+        }
+        else {
+            if (p.isOp()) {
+                rank = ChatColor.AQUA 
+                    + "an " 
+                    + ChatColor.RED 
+                    + "OP" 
+                    + ChatColor.AQUA 
+                    + ".";
+            } else {
+                rank = ChatColor.AQUA 
+                    + "an " 
+                    + ChatColor.WHITE 
+                    + "NON-OP" 
+                    + ChatColor.AQUA 
+                    + ".";
+            }
+            
+        }
+        
+        return rank;
     }
 }
