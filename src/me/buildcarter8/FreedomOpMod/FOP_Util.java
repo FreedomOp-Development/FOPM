@@ -16,12 +16,25 @@
 
 package me.buildcarter8.FreedomOpMod;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import org.bukkit.*;
 import org.bukkit.command.*;
+import org.bukkit.entity.Player;
 
 public class FOP_Util {
+    protected static String prefix;
+    protected static final List<String> DEVELOPERS = Arrays.asList("Mafrans");
+    protected static boolean isConsole;
+    
     private FOP_Util() {
         throw new AssertionError();
+    }
+    
+    public static boolean isConsole(CommandSender sender) {
+        isConsole = !(sender instanceof Player);
+        return isConsole;
     }
     
     public static void adminAction(CommandSender sender, String message, Boolean raw) {
@@ -46,5 +59,125 @@ public class FOP_Util {
     
     public static void bcastMsg(String message) {
         bcastMsg(message, false);
+    }
+    
+    public static void adminChat(CommandSender sender, String message) {
+        Collection<? extends Player> players = Bukkit.getOnlinePlayers();
+        players.forEach((p) -> {
+            if (FOP_AdminList.isAdmin(p)) {
+                p.sendMessage(ChatColor.WHITE 
+                        + "[" 
+                        + ChatColor.DARK_AQUA 
+                        + "ADMIN" 
+                        + ChatColor.WHITE 
+                        + "]" 
+                        + sender.getName() 
+                        + " " 
+                        + prefix(sender)
+                        + ChatColor.RESET 
+                        + ": " 
+                        + ChatColor.AQUA 
+                        + message);
+            } else { /* do nothing */ }
+        });
+    }
+    
+    public static String prefix(CommandSender sender) {
+        if (DEVELOPERS.contains(sender.getName())) {
+            prefix = ChatColor.DARK_GRAY
+                    + "[" 
+                    + ChatColor.LIGHT_PURPLE
+                    + "Developer"
+                    + ChatColor.DARK_GRAY
+                    + "]";
+        }
+        
+        if (FOP_AdminList.isAdmin(sender)) {
+            prefix  = ChatColor.DARK_GRAY 
+                    + "[" 
+                    + ChatColor.GOLD 
+                    + "SA" 
+                    + ChatColor.DARK_GRAY 
+                    + "]";
+        }
+        else if (FOP_AdminList.isTelnetAdmin(sender)) {
+            prefix = ChatColor.DARK_GRAY 
+                    + "[" 
+                    + ChatColor.GREEN 
+                    + "STA" 
+                    + ChatColor.DARK_GRAY 
+                    + "]";
+        }
+        
+        else if (FOP_AdminList.isSeniorAdmin(sender)) {
+            prefix = ChatColor.DARK_GRAY 
+                    + "[" 
+                    + ChatColor.LIGHT_PURPLE 
+                    + "SrA" 
+                    + ChatColor.DARK_GRAY 
+                    + "]";
+        }
+        
+        else if (FOP_AdminList.isSystemAdmin(sender)) {
+            prefix = ChatColor.DARK_GRAY 
+                    + "[" 
+                    + ChatColor.DARK_RED 
+                    + "SysAdmin" 
+                    + ChatColor.DARK_GRAY 
+                    + "]";
+        }
+        
+        else if (FOP_AdminList.isOfficer(sender)) {
+            if (sender.getName().equalsIgnoreCase("Paldiu")) {
+                prefix = ChatColor.DARK_GRAY 
+                        + "["
+                        + ChatColor.DARK_BLUE
+                        + "CEO" 
+                        + ChatColor.DARK_GRAY
+                        + "]";
+            }
+            else if (sender.getName().equalsIgnoreCase("CrafterSmith12")) {
+                prefix = ChatColor.DARK_GRAY 
+                        + "["
+                        + ChatColor.DARK_AQUA
+                        + "COO"
+                        + ChatColor.DARK_GRAY
+                        + "]";
+            }
+            else if (sender.getName().equalsIgnoreCase("EnderLolzeh")) { 
+                prefix = ChatColor.DARK_GRAY
+                        + "["
+                        + ChatColor.DARK_RED 
+                        + "CFO" 
+                        + ChatColor.DARK_GRAY 
+                        + "]";
+            }
+            else if (sender.getName().equalsIgnoreCase("buildcarter8")) {
+                prefix = ChatColor.DARK_GRAY 
+                        + "["
+                        + ChatColor.DARK_PURPLE
+                        + "CDO"
+                        + ChatColor.DARK_GRAY
+                        + "]";
+            }
+            else { 
+                    prefix = ChatColor.DARK_GRAY 
+                    + "[" 
+                    + ChatColor.DARK_GREEN 
+                    + "Officer" 
+                    + ChatColor.DARK_GRAY 
+                    + "]"; }
+        }
+        
+        else {
+            prefix = ChatColor.DARK_GRAY 
+                    + "[" 
+                    + ChatColor.RED 
+                    + "OP" 
+                    + ChatColor.DARK_GRAY 
+                    + "]";
+        }
+        
+        return prefix;
     }
 }
