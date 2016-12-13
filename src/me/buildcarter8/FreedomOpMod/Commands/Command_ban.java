@@ -7,8 +7,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 
-@CommandParameters(name="gtfo", description="Bans a player.", usage="/<command> <player> [reason]", source=SourceType.BOTH, level=AdminLevel.SUPER)
-public class Command_gtfo {
+@CommandParameters(name="ban", description="Bans a player.", usage="/<command> <player> [reason]", source=SourceType.BOTH, level=AdminLevel.SUPER)
+public class Command_ban {
     public boolean onCommand(CommandSender sender, Command cmd, String lbl, String[] args) {
         if (args.length > 2) {
             Player t = Bukkit.getPlayer(args[0]);
@@ -49,7 +49,7 @@ public class Command_gtfo {
             }
             String name = target.getName().trim();
             String IP = target.getAddress().getAddress().getHostAddress().trim();
-            FOP_Util.bcastMsg(name + " has been a VERY naughty, naughty boy!");
+            FOP_Util.bcastMsg(name + " has been a VERY bitchy boy!");
             FOP_Util.adminAction(sender, "Banning: " + name + " and IP(s): " + IP);
             BanList.add(name, IP, reason, sender.getName());
             target.kickPlayer(reason + "\n" + "Banned by: " + sender.getName());
