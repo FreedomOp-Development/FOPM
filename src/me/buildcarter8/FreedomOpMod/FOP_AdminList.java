@@ -23,7 +23,7 @@ import org.bukkit.command.*;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.ConfigurationSection;
 
-public class FOP_AdminList {
+public class FOP_AdminList extends YamlConfiguration {
     private static boolean isAdmin;
     private static boolean isTelnetAdmin;
     private static boolean isSeniorAdmin;
