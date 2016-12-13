@@ -15,8 +15,12 @@
  */
 package me.buildcarter8.FreedomOpMod.Listeners;
 
+import me.buildcarter8.FreedomOpMod.FOP_Util;
+import me.buildcarter8.FreedomOpMod.PlayerData;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.entity.Player;
 /**
  *
  * @author FreedomOp Development
@@ -24,5 +28,15 @@ import org.bukkit.event.Listener;
 public class FOP_ChatListener implements Listener {
     public FOP_ChatListener() {
         throw new UnsupportedOperationException("This method has not been implemented yet!");
+    }
+    
+    @EventHandler
+    public void onPlayerChat(AsyncPlayerChatEvent e) {
+        Player p = e.getPlayer();
+        PlayerData pd = PlayerData.getPlayerData(p);
+        if (pd.inAdminChat()) {
+            e.setCancelled(true);
+            FOP_Util.adminChat(p, e.getMessage());
+        }
     }
 }
