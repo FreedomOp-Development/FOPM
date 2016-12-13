@@ -16,7 +16,7 @@
 package me.buildcarter8.FreedomOpMod.Commands;
 
 import me.buildcarter8.FreedomOpMod.*;
-import me.buildcarter8.FreedomOpMod.Listeners.PlayerData;
+import me.buildcarter8.FreedomOpMod.PlayerData;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.*;
 import org.bukkit.command.*;
