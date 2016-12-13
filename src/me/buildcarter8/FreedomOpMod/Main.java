@@ -16,23 +16,37 @@
 
 package me.buildcarter8.FreedomOpMod;
 
+import java.util.List;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.*;
 
 public class Main extends JavaPlugin
 {
-    public static String plugin_file = "plugin.yml";
     public static Main plugin;
+    protected static String pName;
+    protected static String pVersion;
+    protected static List<String> pAuthors;
     public static final String CONFIG_FILE = "config.yml";
     public static final String MSG_NO_PERMS = ChatColor.RED + "You don't have permission to use this command!";
+    
+    @Override
+    public void onLoad() {
+        Main.plugin = this;
+        pName = this.getDescription().getName();
+        pVersion = this.getDescription().getVersion();
+        pAuthors = this.getDescription().getAuthors();
+    }
+    
     @Override
     public void onEnable()
     {
-
+        FOPMLog.info(String.format("[%s] version %s by %s has been enabled!", pName, pVersion, pAuthors.toString()));
+        FOP_Services.start();
     }
     @Override
     public void onDisable()
     {
-
+        FOP_Services.stop();
+        FOPMLog.info(String.format("[%s] has been disabled", pName));
     }
 }
