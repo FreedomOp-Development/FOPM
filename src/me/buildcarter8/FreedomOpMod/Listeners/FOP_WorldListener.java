@@ -13,9 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package me.buildcarter8.FreedomOpMod.Listeners;
 
-package me.buildcarter8.FreedomOpMod.Commands;
-
-public enum SourceType {
-    ONLY_IN_GAME, ONLY_CONSOLE, BOTH;
+import org.bukkit.event.Listener;
+/**
+ *
+ * @author FreedomOp Development
+ */
+public class FOP_WorldListener implements Listener {
+    public FOP_WorldListener() {
+        throw new UnsupportedOperationException("This method has not been implemented yet!");
+    }
 }

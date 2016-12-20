@@ -13,9 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package me.buildcarter8.FreedomOpMod.Commands;
 
-public enum SourceType {
-    ONLY_IN_GAME, ONLY_CONSOLE, BOTH;
+/**
+ *
+ * @author FreedomOp Development
+ */
+public class Command_flatlands {
+    
 }

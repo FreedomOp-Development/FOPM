@@ -13,37 +13,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package me.buildcarter8.FreedomOpMod.Commands;
 
 import me.buildcarter8.FreedomOpMod.*;
+import me.buildcarter8.FreedomOpMod.PlayerData;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.*;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
-
-@CommandParameters(name="survival", description="Set your or another player's gamemode to survival.", usage="/<command> [player]", source=SourceType.ONLY_IN_GAME, level=AdminLevel.OP, aliases="gms")
-public class Command_survival {
+/**
+ *
+ * @author FreedomOp Development
+ */
+@CommandParameters(name="adminchat", description="Toggle adminchat, or send a message.", usage="/<command> [message]", source=SourceType.BOTH, level=AdminLevel.SUPER, aliases="ac, ct")
+public class Command_adminchat {
     public boolean onCommand(CommandSender sender, Command cmd, String lbl, String[] args) {
-        Player p = (Player) sender;
-        
-        if (args.length == 1) {
-            if (!FOP_AdminList.isAdmin(p)) {
-                p.sendMessage(Main.MSG_NO_PERMS);
+        if (args.length == 0) {
+            if (FOP_Util.isConsole(sender)) {
+                sender.sendMessage("Only in-game players can toggle admin chat.");
                 return true;
             }
-            Player t = Bukkit.getPlayer(args[0]);
-            if (t == null) {
-                p.sendMessage("That player is not online!");
+            Player  p = (Player) sender;
+            PlayerData pd = PlayerData.getPlayerData(p);
+            if (!pd.inAdminChat()) {
+                pd.setAdminChat(true);
+                sender.sendMessage("Now talking in admin chat.");
                 return true;
             }
-            t.setGameMode(GameMode.SURVIVAL);
-            t.sendMessage("Your gamemode has been set to SURVIVAL by " + p.getName());
-            p.sendMessage("You have successfully changed " + t.getName() + "\'s gamemode to SURVIVAL.");
+            pd.setAdminChat(false);
+            sender.sendMessage("Now talking in regular chat.");
             return true;
         }
         
-        p.setGameMode(GameMode.SURVIVAL);
-        p.sendMessage("You have successfully changed your gamemode to SURVIVAL.");
+        FOP_Util.adminChat(sender, StringUtils.join(args));
         return true;
     }
 }

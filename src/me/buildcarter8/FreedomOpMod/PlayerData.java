@@ -13,22 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package me.buildcarter8.FreedomOpMod;
 
-package me.buildcarter8.FreedomOpMod.Banning;
-
-import java.io.File;
-import java.util.Date;
-import org.bukkit.*;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.Configuration;
-
-public class BanList {
-    private static final File BANLIST = new File("banned-players.yml");
-    protected static final YamlConfiguration YAML = YamlConfiguration.loadConfiguration(BANLIST);
-    protected static Configuration defaults;
+import org.bukkit.entity.Player;
+/**
+ *
+ * @author FreedomOp Development
+ */
+public class PlayerData {
+    protected static boolean adminChat;
     
-    public static void add(String name, String IP, String reason, String adminName) {
-        //methods here
+    public static PlayerData getPlayerData(Player p) {
+        
+        return null;
+    }
+    
+    public void setAdminChat(boolean admin_chat) {
+        adminChat = admin_chat;
+    }
+    
+    public boolean inAdminChat() {
+        return adminChat;
     }
 }
