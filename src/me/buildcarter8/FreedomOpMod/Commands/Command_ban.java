@@ -1,3 +1,4 @@
+
 /*
  * Copyright 2016 FreedomOp Development.
  *
@@ -38,12 +39,19 @@ public class Command_ban {
                 return true;
             }
             if (FOP_AdminList.isAdmin(t)) {
+
                 sender.sendMessage("That player is an admin, and cannot be banned. Use /fys for that.");
+                sender.sendMessage("That player is an admin, and cannot be banned. Use /doom for that.");
+
                 return true;
             }
             String name = t.getName().trim();
             String IP = t.getAddress().getAddress().getHostAddress().trim();
+
             FOP_Util.bcastMsg(name + " has been a VERY bad boy!");
+
+            FOP_Util.bcastMsg(name + " has been a VERY naughty, naughty boy!");
+
             FOP_Util.adminAction(sender, "Banning: " + name + " and IP(s):" + IP);
             BanList.add(name, IP, reason, sender.getName());
             t.kickPlayer(reason + "\n" + "Banned by: " + sender.getName());
@@ -60,12 +68,20 @@ public class Command_ban {
                 return true;
             }
             if (FOP_AdminList.isAdmin(target)) {
+
                 sender.sendMessage("That player is an admin, and cannot be banned. Use /fys instead.");
+
+                sender.sendMessage("That player is an admin, and cannot be banned. Use /doom instead.");
+
                 return true;
             }
             String name = target.getName().trim();
             String IP = target.getAddress().getAddress().getHostAddress().trim();
+
             FOP_Util.bcastMsg(name + " has been a VERY bad boy!");
+
+            FOP_Util.bcastMsg(name + " has been a VERY bitchy boy!");
+
             FOP_Util.adminAction(sender, "Banning: " + name + " and IP(s): " + IP);
             BanList.add(name, IP, reason, sender.getName());
             target.kickPlayer(reason + "\n" + "Banned by: " + sender.getName());
@@ -74,4 +90,8 @@ public class Command_ban {
         
         return true;
     }
+
 }
+
+}
+
